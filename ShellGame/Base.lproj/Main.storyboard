@@ -80,20 +80,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdI-1O-I83" userLabel="BottomContainer">
                                 <rect key="frame" x="0.0" y="517" width="375" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y00-Fn-vSR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wallet: $0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y00-Fn-vSR">
                                         <rect key="frame" x="0.0" y="10" width="375" height="41"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="aiQ-A9-fgP"/>
-                                        </constraints>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDP-dD-MUo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0 / 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDP-dD-MUo">
                                         <rect key="frame" x="0.0" y="51" width="375" height="41"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="qKj-yk-2Rj"/>
-                                        </constraints>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -113,15 +109,9 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="y00-Fn-vSR" firstAttribute="top" secondItem="GdI-1O-I83" secondAttribute="top" constant="10" id="CO8-fB-zRp"/>
                                     <constraint firstItem="g4D-Xh-lOZ" firstAttribute="leading" secondItem="GdI-1O-I83" secondAttribute="leading" id="bya-J9-lHT"/>
                                     <constraint firstAttribute="bottom" secondItem="g4D-Xh-lOZ" secondAttribute="bottom" constant="20" id="dIp-iC-Wai"/>
-                                    <constraint firstItem="GDP-dD-MUo" firstAttribute="leading" secondItem="GdI-1O-I83" secondAttribute="leading" id="geS-r8-R8y"/>
                                     <constraint firstAttribute="trailing" secondItem="g4D-Xh-lOZ" secondAttribute="trailing" id="jNV-Ub-joN"/>
-                                    <constraint firstAttribute="trailing" secondItem="GDP-dD-MUo" secondAttribute="trailing" id="roE-6v-6K8"/>
-                                    <constraint firstItem="y00-Fn-vSR" firstAttribute="leading" secondItem="GdI-1O-I83" secondAttribute="leading" id="spe-hB-Hlb"/>
-                                    <constraint firstItem="GDP-dD-MUo" firstAttribute="top" secondItem="y00-Fn-vSR" secondAttribute="bottom" id="xsS-ju-gbZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="y00-Fn-vSR" secondAttribute="trailing" id="yFb-n9-UlD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -146,11 +136,12 @@
                         <outlet property="scoreLabel" destination="GDP-dD-MUo" id="fCN-Cc-HrR"/>
                         <outlet property="secondShellButton" destination="hyK-qF-wQj" id="8gv-3Z-NCf"/>
                         <outlet property="thirdShellButton" destination="kkt-RW-mlH" id="75E-eo-PQA"/>
+                        <outlet property="walletLabel" destination="y00-Fn-vSR" id="Twh-jT-zXo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.94202898550725" y="117.39130434782609"/>
+            <point key="canvasLocation" x="114.40000000000001" y="117.39130434782609"/>
         </scene>
     </scenes>
     <resources>

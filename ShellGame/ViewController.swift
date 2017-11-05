@@ -16,12 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var firstShellButton: UIButton!
     @IBOutlet weak var secondShellButton: UIButton!
     @IBOutlet weak var thirdShellButton: UIButton!
-    
+    @IBOutlet weak var walletLabel: UILabel!
     
     //MARK: Properties
     var winningShellIndex = 0
     var numberOfWins = 0
     var numberOfGames = 0
+    var dollarsInWallet = 100
+    let dollarsBet = 1
     
     
     //MARK:
@@ -39,15 +41,25 @@ class ViewController: UIViewController {
         
         if sender.tag == winningShellIndex + 1 {
             sender.setImage(UIImage(named: "shellUpWin"), for: .normal)
+            
+            dollarsInWallet += dollarsBet
             numberOfWins += 1
-            scoreLabel.text = "\(numberOfWins) / \(numberOfGames)"
-            gameResultsAlertPresentation(title: "Victory!", message: "You've bit this device!")
+            
+            walletLabel.text = "Wallet: $\(dollarsInWallet)"
+            scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
+            
+            gameResultsAlertPresentation(title: "Victory!", message: "You earned $\(dollarsBet).")
             
         } else {
             let shellButtonsArray = [firstShellButton, secondShellButton, thirdShellButton]
             shellButtonsArray[winningShellIndex]?.setImage(UIImage(named: "shellUpLose"), for: .normal)
-            scoreLabel.text = "\(numberOfWins) / \(numberOfGames)"
-            gameResultsAlertPresentation(title: "Loser!", message: "Please, try again")
+            
+            dollarsInWallet -= dollarsBet
+            
+            walletLabel.text = "Wallet: $\(dollarsInWallet)"
+            scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
+            
+            gameResultsAlertPresentation(title: "Loser!", message: "You lost $\(dollarsBet).")
         }
         
     }
@@ -63,7 +75,10 @@ class ViewController: UIViewController {
         restartOneGame()
         numberOfWins = 0
         numberOfGames = 0
-        scoreLabel.text = "\(numberOfWins) / \(numberOfGames)"
+        dollarsInWallet = 100
+        
+        walletLabel.text = "Wallet: $\(dollarsInWallet)"
+        scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
     }
     
     
