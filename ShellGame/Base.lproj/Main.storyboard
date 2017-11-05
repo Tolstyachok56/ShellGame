@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,17 +15,16 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShellGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-8u-RIN" userLabel="TopContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shell Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkM-b1-Oq6">
-                                        <rect key="frame" x="49" y="44.5" width="223" height="61"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="Xha-C7-qwo"/>
-                                            <constraint firstAttribute="width" constant="223" id="aXg-12-lNY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <color key="textColor" red="0.5552616964" green="0.86004513270000005" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -32,33 +32,34 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rkM-b1-Oq6" firstAttribute="centerX" secondItem="CfB-8u-RIN" secondAttribute="centerX" id="XwK-R8-Uwo"/>
+                                    <constraint firstItem="rkM-b1-Oq6" firstAttribute="leading" secondItem="CfB-8u-RIN" secondAttribute="leading" id="Oxq-VS-cjx"/>
+                                    <constraint firstAttribute="trailing" secondItem="rkM-b1-Oq6" secondAttribute="trailing" id="VnS-ky-8yc"/>
                                     <constraint firstItem="rkM-b1-Oq6" firstAttribute="centerY" secondItem="CfB-8u-RIN" secondAttribute="centerY" id="b8N-yn-UL8"/>
                                     <constraint firstAttribute="height" constant="150" id="oR3-w0-4Aa"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hR-dR-9NH" userLabel="MiddleContainer">
-                                <rect key="frame" x="0.0" y="150" width="320" height="268"/>
+                                <rect key="frame" x="0.0" y="150" width="375" height="367"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="UYr-NE-8kx" userLabel="ShellsStackView">
-                                        <rect key="frame" x="0.0" y="84" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="133.5" width="375" height="100"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19m-Dr-nex">
-                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="100"/>
                                                 <state key="normal" title="Button" image="shellDown"/>
                                                 <connections>
                                                     <action selector="shellPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IqG-15-JwB"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyK-qF-wQj">
-                                                <rect key="frame" x="106.5" y="0.0" width="107" height="100"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="100"/>
                                                 <state key="normal" title="Button" image="shellDown"/>
                                                 <connections>
                                                     <action selector="shellPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tjE-2E-26G"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkt-RW-mlH">
-                                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="100"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="100"/>
                                                 <state key="normal" title="Button" image="shellDown"/>
                                                 <connections>
                                                     <action selector="shellPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tjr-Ga-f7I"/>
@@ -77,10 +78,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdI-1O-I83" userLabel="BottomContainer">
-                                <rect key="frame" x="0.0" y="418" width="320" height="150"/>
+                                <rect key="frame" x="0.0" y="517" width="375" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y00-Fn-vSR">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="41"/>
+                                        <rect key="frame" x="0.0" y="10" width="375" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="aiQ-A9-fgP"/>
                                         </constraints>
@@ -89,7 +90,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDP-dD-MUo">
-                                        <rect key="frame" x="0.0" y="51" width="320" height="41"/>
+                                        <rect key="frame" x="0.0" y="51" width="375" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="qKj-yk-2Rj"/>
                                         </constraints>
@@ -98,7 +99,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4D-Xh-lOZ">
-                                        <rect key="frame" x="0.0" y="100" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="100" width="375" height="30"/>
                                         <color key="backgroundColor" red="0.5552616964" green="0.86004513270000005" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="R42-nn-Yfl"/>
