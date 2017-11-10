@@ -17,18 +17,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondShellButton: UIButton!
     @IBOutlet weak var thirdShellButton: UIButton!
     @IBOutlet weak var walletLabel: UILabel!
+    @IBOutlet weak var betPickerView: UIPickerView!
     
+
     //MARK: Properties
     var winningShellIndex = 0
     var numberOfWins = 0
     var numberOfGames = 0
     var dollarsInWallet = 100
-    let dollarsBet = 1
-    
+    var dollarsBet = 1
+    let betsArray = [1, 2, 5, 10, 25, 50, 100]
     
     //MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        betPickerView.dataSource = self
+        betPickerView.delegate = self
+        
         restartWholeGame()
     }
 
@@ -126,3 +132,27 @@ class ViewController: UIViewController {
     
 }
 
+
+extension ViewController: UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return betsArray.count
+    }
+    
+}
+
+extension ViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(betsArray[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        dollarsBet = betsArray[row]
+    }
+    
+}
