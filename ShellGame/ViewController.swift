@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     var numberOfWins = 0
     var numberOfGames = 0
     var dollarsInWallet = 100
-    var dollarsBet = 1
+    var pickedBet = 1
     let betsArray = [1, 2, 5, 10, 25, 50, 100]
     
     //MARK:
@@ -48,31 +48,31 @@ class ViewController: UIViewController {
         if sender.tag == winningShellIndex + 1 {
             sender.setImage(UIImage(named: "shellUpWin"), for: .normal)
             
-            dollarsInWallet += dollarsBet
+            dollarsInWallet += pickedBet
             numberOfWins += 1
             
             walletLabel.text = "Wallet: $\(dollarsInWallet)"
             scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
             
-            gameResultsAlertPresentation(title: "Victory!", message: "You earned $\(dollarsBet).")
+            gameResultsAlert(title: "Victory!", message: "You earned $\(pickedBet).")
             
         } else {
             let shellButtonsArray = [firstShellButton, secondShellButton, thirdShellButton]
             shellButtonsArray[winningShellIndex]?.setImage(UIImage(named: "shellUpLose"), for: .normal)
             
-            dollarsInWallet -= dollarsBet
+            dollarsInWallet -= pickedBet
             
             walletLabel.text = "Wallet: $\(dollarsInWallet)"
             scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
             
-            gameResultsAlertPresentation(title: "Loser!", message: "You lost $\(dollarsBet).")
+            gameResultsAlert(title: "Loser!", message: "You lost $\(pickedBet).")
         }
         
     }
     
     
     @IBAction func restartButtonPressed(_ sender: UIButton) {
-        restartAlertPresentation()
+        restartAlert()
     }
     
     
@@ -96,30 +96,33 @@ class ViewController: UIViewController {
     }
     
     
-    func doubleButtonAlertPresentation(title: String, message: String, firstAlertAction: UIAlertAction, secondAlertAction: UIAlertAction) {
+    func doubleButtonAlertPresentation(title: String, message: String, firstButtonAlertAction: UIAlertAction, secondButtonAlertAction: UIAlertAction) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(firstAlertAction)
-        alertController.addAction(secondAlertAction)
+        alertController.addAction(firstButtonAlertAction)
+        alertController.addAction(secondButtonAlertAction)
         
         self.present(alertController, animated: true, completion: nil)
     }
     
     
-    func gameResultsAlertPresentation(title: String, message: String) {
+    func gameResultsAlert(title: String, message: String) {
         let continueAlertAction = UIAlertAction(title: "Continue", style: .default, handler: { (alertAction) in
             self.restartOneGame()
         })
         let restartAlertAction = UIAlertAction(title: "Restart", style: .default, handler: { (alertAction) in
-            self.restartAlertPresentation()
+            self.restartAlert()
         })
         
-        doubleButtonAlertPresentation(title: title, message: message, firstAlertAction: continueAlertAction, secondAlertAction: restartAlertAction)
+        doubleButtonAlertPresentation(title: title,
+                                      message: message,
+                                      firstButtonAlertAction: continueAlertAction,
+                                      secondButtonAlertAction: restartAlertAction)
     }
     
     
-    func restartAlertPresentation() {
+    func restartAlert() {
         let restartAlertAction = UIAlertAction(title: "Restart", style: .default, handler: { (alertAction) in
             self.restartWholeGame()
         })
@@ -127,7 +130,10 @@ class ViewController: UIViewController {
             self.restartOneGame()
         })
         
-        doubleButtonAlertPresentation(title: "Alert!", message: "This action will delete current score", firstAlertAction: restartAlertAction, secondAlertAction: cancelAlertAction)
+        doubleButtonAlertPresentation(title: "Alert!",
+                                      message: "This action will delete current score",
+                                      firstButtonAlertAction: restartAlertAction,
+                                      secondButtonAlertAction: cancelAlertAction)
     }
     
 }
@@ -152,7 +158,7 @@ extension ViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        dollarsBet = betsArray[row]
+        pickedBet = betsArray[row]
     }
     
 }
