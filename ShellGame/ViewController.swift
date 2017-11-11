@@ -21,12 +21,7 @@ class ViewController: UIViewController {
     
 
     //MARK: Properties
-    var winningShellIndex = 0
-    var numberOfWins = 0
-    var numberOfGames = 0
-    var dollarsInWallet = 100
-    var pickedBet = 1
-    let betsArray = [1, 2, 5, 10, 25, 50, 100]
+    var shellGame = ShellGame()
     
     //MARK:
     override func viewDidLoad() {
@@ -41,31 +36,29 @@ class ViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func shellPicked(_ sender: UIButton) {
-        winningShellIndex = Int(arc4random_uniform(3))
-        print(winningShellIndex)
-        numberOfGames += 1
+        shellGame.winningShellIndex = Int(arc4random_uniform(3))
+        print(shellGame.winningShellIndex)
+        shellGame.numberOfGames += 1
         
-        if sender.tag == winningShellIndex + 1 {
+        if sender.tag == shellGame.winningShellIndex + 1 {
             sender.setImage(UIImage(named: "shellUpWin"), for: .normal)
             
-            dollarsInWallet += pickedBet
-            numberOfWins += 1
+            shellGame.dollarsInWallet += shellGame.pickedBet
+            shellGame.numberOfWins += 1
             
-            walletLabel.text = "Wallet: $\(dollarsInWallet)"
-            scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
+            updateLabels()
             
-            gameResultsAlert(title: "Victory!", message: "You earned $\(pickedBet).")
+            gameResultAlert(title: "Victory!", message: "You earned $\(shellGame.pickedBet).")
             
         } else {
             let shellButtonsArray = [firstShellButton, secondShellButton, thirdShellButton]
-            shellButtonsArray[winningShellIndex]?.setImage(UIImage(named: "shellUpLose"), for: .normal)
+            shellButtonsArray[shellGame.winningShellIndex]?.setImage(UIImage(named: "shellUpLose"), for: .normal)
             
-            dollarsInWallet -= pickedBet
+            shellGame.dollarsInWallet -= shellGame.pickedBet
             
-            walletLabel.text = "Wallet: $\(dollarsInWallet)"
-            scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
+            updateLabels()
             
-            gameResultsAlert(title: "Loser!", message: "You lost $\(pickedBet).")
+            gameResultAlert(title: "Loser!", message: "You lost $\(shellGame.pickedBet).")
         }
         
     }
@@ -78,17 +71,13 @@ class ViewController: UIViewController {
     
     //MARK: Methods
     func restartWholeGame() {
-        restartOneGame()
-        numberOfWins = 0
-        numberOfGames = 0
-        dollarsInWallet = 100
-        
-        walletLabel.text = "Wallet: $\(dollarsInWallet)"
-        scoreLabel.text = "Score: \(numberOfWins) / \(numberOfGames)"
+        restartShellButtonImages()
+        shellGame.restartGameData()
+        updateLabels()
     }
     
     
-    func restartOneGame() {
+    func restartShellButtonImages() {
         firstShellButton.setImage(UIImage(named: "shellDown"), for: .normal)
         secondShellButton.setImage(UIImage(named: "shellDown"), for: .normal)
         thirdShellButton.setImage(UIImage(named: "shellDown"), for: .normal)
@@ -96,8 +85,13 @@ class ViewController: UIViewController {
     }
     
     
+    func updateLabels() {
+        walletLabel.text = "Wallet: $\(shellGame.dollarsInWallet)"
+        scoreLabel.text = "Score: \(shellGame.numberOfWins) / \(shellGame.numberOfGames)"
+    }
+    
+    
     func doubleButtonAlertPresentation(title: String, message: String, firstButtonAlertAction: UIAlertAction, secondButtonAlertAction: UIAlertAction) {
-        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alertController.addAction(firstButtonAlertAction)
@@ -107,13 +101,9 @@ class ViewController: UIViewController {
     }
     
     
-    func gameResultsAlert(title: String, message: String) {
-        let continueAlertAction = UIAlertAction(title: "Continue", style: .default, handler: { (alertAction) in
-            self.restartOneGame()
-        })
-        let restartAlertAction = UIAlertAction(title: "Restart", style: .default, handler: { (alertAction) in
-            self.restartAlert()
-        })
+    func gameResultAlert(title: String, message: String) {
+        let continueAlertAction = UIAlertAction(title: "Continue", style: .default, handler: { (alertAction) in self.restartShellButtonImages() })
+        let restartAlertAction = UIAlertAction(title: "Restart", style: .default, handler: { (alertAction) in self.restartAlert() })
         
         doubleButtonAlertPresentation(title: title,
                                       message: message,
@@ -123,12 +113,8 @@ class ViewController: UIViewController {
     
     
     func restartAlert() {
-        let restartAlertAction = UIAlertAction(title: "Restart", style: .default, handler: { (alertAction) in
-            self.restartWholeGame()
-        })
-        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .default, handler: { (alertAction) in
-            self.restartOneGame()
-        })
+        let restartAlertAction = UIAlertAction(title: "Restart", style: .default, handler: { (alertAction) in self.restartWholeGame() })
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .default, handler: { (alertAction) in self.restartShellButtonImages() })
         
         doubleButtonAlertPresentation(title: "Alert!",
                                       message: "This action will delete current score",
@@ -146,19 +132,20 @@ extension ViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return betsArray.count
+        return shellGame.betsArray.count
     }
     
 }
 
+
 extension ViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(betsArray[row])
+        return String(shellGame.betsArray[row])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickedBet = betsArray[row]
+        shellGame.pickedBet = shellGame.betsArray[row]
     }
     
 }
